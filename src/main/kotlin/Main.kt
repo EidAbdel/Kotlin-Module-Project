@@ -1,3 +1,9 @@
+import lib.NotesAPI
+
 fun main(args: Array<String>) {
-    println("Hello World!")
+
+    val noteApi = NotesAPI()
+    noteApi.start()
+
 }
+

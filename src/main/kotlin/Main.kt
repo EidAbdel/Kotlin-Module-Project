@@ -1,8 +1,8 @@
-import lib.NotesAPI
+import app.NotesAPP
 
 fun main(args: Array<String>) {
 
-    val noteApi = NotesAPI()
+    val noteApi = NotesAPP()
     noteApi.start()
 
 }

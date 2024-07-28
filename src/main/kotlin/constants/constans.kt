@@ -2,7 +2,10 @@ package constants
 
 object ProgramConstants {
     const val ARCHIVE_LIST = "Список архивов:"
+    const val Note_LIST = "Список заметок:"
     const val ARCHIVE_NAME = "Наименование архивов:"
+
+
 
     const val NO_DATA = "Нет Данных"
 

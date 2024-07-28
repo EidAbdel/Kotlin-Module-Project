@@ -2,8 +2,11 @@ package lib
 
 import constants.ProgramConstants
 
-class ArchiveNotes(val name: String) {
+class NotesList(private var name: String) {
     private var archiveList: MutableList<Note> = mutableListOf()
+
+    fun setName(name: String) = name.also { this.name = it }
+    fun getName(): String = this.name
 
     fun copyNotes(list: List<Note>) {
         list.forEach { note -> archiveList.add(note) }
@@ -29,18 +32,19 @@ class ArchiveNotes(val name: String) {
     }
 
     fun getNotesHeader(): MutableList<String> {
-        val headerList: MutableList<String> =
-            mutableListOf(archiveList.forEachIndexed { index, note -> "$index. ${note.getHeader()}" }
-                .toString())
+        val headerList: MutableList<String> = mutableListOf()
+        mutableListOf(archiveList.forEachIndexed { index, note -> headerList.add("$index. ${note.getHeader()}") }
+            .toString())
         return headerList
     }
 
-    fun findNoteByIndex(index: Int) {
-        if (archiveList.getOrNull(index) != null) {
-            println(archiveList[index])
-        } else {
-            println(ProgramConstants.OUT_OF_RANGE)
-        }
+    fun findNoteByIndex(index: Int): Note? {
+        if (archiveList.getOrNull(index) != null) return archiveList[index]
+        return null
+    }
+
+    fun deleteNoteByIndex(index: Int) {
+        archiveList.removeAt(index)
     }
 
     fun findNoteByHeader(header: String) {
@@ -68,7 +72,7 @@ class ArchiveNotes(val name: String) {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as ArchiveNotes
+        other as NotesList
 
         if (name != other.name) return false
         if (archiveList != other.archiveList) return false
